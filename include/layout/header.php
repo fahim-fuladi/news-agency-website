@@ -1,3 +1,11 @@
+<?php
+include __DIR__ . "/../db.php";
+
+
+$categories = $db->query("SELECT * FROM category");
+?>
+
+
 <!DOCTYPE html>
 <html dir="rtl" lang="fa">
 
@@ -21,9 +29,8 @@
             </a>
 
             <nav class="d-inline-flex mt-2 mt-md-0 me-md-auto">
-                <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#">سیاسی</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">اقتصادی</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">علم و فناوری</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">متفرقه</a>
+                <?php foreach($categories as $category): ?>
+                    <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#"><?= $category['name'] ?></a>
+                    <?php endforeach ?>
             </nav>
         </header>
