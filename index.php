@@ -1,84 +1,11 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="fa">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>News agency</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
-
-    <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
-
-<body>
-    <div class="container py-3">
-        <header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <a href="index.html" class="fs-4 fw-medium link-body-emphasis text-decoration-none">
-                خبرگزاری هیتنا
-            </a>
-
-            <nav class="d-inline-flex mt-2 mt-md-0 me-md-auto">
-                <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#">سیاسی</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">اقتصادی</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">علم و فناوری</a>
-                <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="#">متفرقه</a>
-            </nav>
-        </header>
+<?php
+    include "./include/layout/header.php"
+?>
 
         <main>
-            <!-- Slider Section -->
-            <section>
-                <div id="carousel" class="carousel slide">
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active"></button>
-                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="1"></button>
-                        <button type="button" data-bs-target="#carousel" data-bs-slide-to="2"></button>
-                    </div>
-                    <div class="carousel-inner rounded">
-                        <div class="carousel-item overlay carousel-height active">
-                            <img src="./assets/images/1.jpg" class="d-block w-100" alt="post-image" />
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>لورم ایپسوم متن</h5>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item carousel-height overlay">
-                            <img src="./assets/images/2.jpg" class="d-block w-100" alt="post-image" />
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>لورم ایپسوم متن</h5>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده
-                                </p>
-                            </div>
-                        </div>
-                        <div class="carousel-item carousel-height overlay">
-                            <img src="./assets/images/3.jpg" class="d-block w-100" alt="post-image" />
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>لورم ایپسوم متن</h5>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی
-                                    نامفهوم از صنعت چاپ و با استفاده
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                </div>
-            </section>
+        <?php
+            include "./include/layout/slider.php"
+        ?>
 
             <!-- Content Section -->
             <section class="mt-4">
@@ -118,7 +45,7 @@
                                                 هدف بهبود
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                     خبرنگار : فهیم فولادی
@@ -150,7 +77,7 @@
                                                 هدف بهبود
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                     خبرنگار : فهیم فولادی
@@ -182,7 +109,7 @@
                                                 هدف بهبود
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                     خبرنگار : فهیم فولادی
@@ -214,7 +141,7 @@
                                                 هدف بهبود
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                     خبرنگار : فهیم فولادی
@@ -229,25 +156,6 @@
             </section>
         </main>
 
-        <!-- Footer Section -->
-        <footer class="text-center pt-4 my-md-5 pt-md-5 border-top">
-            <div class="row flex-column">
-                <div>
-                    <p class="">
-                        حقوق سایت محفوظ است
-                    </p>
-                </div>
-                <div>
-                    <a href="#"><i class="bi bi-telegram fs-3 text-secondary ms-2"></i></a>
-                    <a href="#"><i class="bi bi-whatsapp fs-3 text-secondary ms-2"></i></a>
-                    <a href="#"><i class="bi bi-instagram fs-3 text-secondary"></i></a>
-                </div>
-            </div>
-        </footer>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
-</body>
-
-</html>
+<?php
+    include "./include/layout/footer.php"
+?>
