@@ -29,8 +29,10 @@ $categories = $db->query("SELECT * FROM category");
             </a>
 
             <nav class="d-inline-flex mt-2 mt-md-0 me-md-auto">
-                <?php foreach($categories as $category): ?>
-                    <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#"><?= $category['name'] ?></a>
+                <?php if($categories->rowCount() > 0): ?>
+                    <?php foreach($categories as $category): ?>
+                        <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#"><?= $category['name'] ?></a>
                     <?php endforeach ?>
+                <?php endif ?>
             </nav>
         </header>
