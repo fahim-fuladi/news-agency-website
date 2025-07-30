@@ -4,16 +4,18 @@ $categories = $db->query("SELECT * FROM category");
 
 <!-- Sidebar Section -->
 <div class="col-lg-4">
-                        <!-- Sesrch Section -->
+                        <!-- Sesrch Section --> 
                         <div class="card">
                             <div class="card-body">
-                                <p class="fw-bold fs-6">جستجو در وبلاگ</p>
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="جستجو ..." />
-                                    <button class="btn btn-secondary" type="button">
-                                        <i class="bi bi-search"></i>
-                                    </button>
-                                </div>
+                                <p class="fw-bold fs-6">جستجو در اخبار</p>
+                                <form action="search.php" method="GET">
+                                    <div class="input-group mb-3">
+                                    <input type="text" name="search" class="form-control" placeholder="جستجو ..." />
+                                        <button class="btn btn-secondary" type="submit">
+                                            <i class="bi bi-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 

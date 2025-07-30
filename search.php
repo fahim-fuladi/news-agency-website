@@ -1,5 +1,20 @@
 <?php
-    include "./include/layout/header.php"
+    include "./include/layout/header.php";
+
+    if(isset($_GET['search'])) {
+        $keyword = $_GET['search'];
+
+        $query = 
+        'SELECT news.title,news.image,news.description,news.status,category.name AS category_name, user.name AS reporter_name
+        FROM news 
+        INNER JOIN category ON news.category_id = category.id
+        INNER JOIN user ON news.reporter_id = user.id
+        WHERE title 
+        LIKE :keyword';
+
+        $news = $db->prepare($query);
+        $news->execute(['keyword' => "%$keyword%"]);
+    }
 ?>
 
         <main>
@@ -8,117 +23,46 @@
                 <div class="row">
                     <!-- Posts Content -->
                     <div class="col-lg-8">
-                        <div class="row">
-                            <div class="col">
-                                <div class="alert alert-secondary">
-                                    اخبار مرتبط با کلمه [ .... ]
-                                </div>
+                <div class="alert alert-secondary">
+                    خبر های مرتبط با کلمه [ <?= $_GET['search'] ?> ]
+                </div>
 
-                                <div class="alert alert-danger">
-                                    خبر مورد نظر پیدا نشد !
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <img src="./assets/images/4.jpg" class="card-img-top" alt="post-image" />
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title fw-bold">
-                                                لورم ایپسوم
-                                            </h5>
-                                            <div>
-                                                <span class="badge text-bg-secondary">سیاسی</span>
-                                            </div>
-                                        </div>
-                                        <p class="card-text text-secondary pt-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ و با
-                                            استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و
-                                            مجله در ستون و سطرآنچنان که لازم
-                                            است و برای شرایط فعلی تکنولوژی
-                                            مورد نیاز و کاربردهای متنوع با
-                                            هدف بهبود
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
-
-                                            <p class="fs-7 mb-0">
-                                                خبرنگار : فهیم فولادی
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <img src="./assets/images/5.jpg" class="card-img-top" alt="post-image" />
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title fw-bold">
-                                                لورم ایپسوم
-                                            </h5>
-                                            <div>
-                                                <span class="badge text-bg-secondary">سیاسی</span>
-                                            </div>
-                                        </div>
-                                        <p class="card-text text-secondary pt-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ و با
-                                            استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و
-                                            مجله در ستون و سطرآنچنان که لازم
-                                            است و برای شرایط فعلی تکنولوژی
-                                            مورد نیاز و کاربردهای متنوع با
-                                            هدف بهبود
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
-
-                                            <p class="fs-7 mb-0">
-                                                خبرنگار : فهیم فولادی
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="card">
-                                    <img src="./assets/images/6.jpg" class="card-img-top" alt="post-image" />
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between">
-                                            <h5 class="card-title fw-bold">
-                                                لورم ایپسوم
-                                            </h5>
-                                            <div>
-                                                <span class="badge text-bg-secondary">سیاسی</span>
-                                            </div>
-                                        </div>
-                                        <p class="card-text text-secondary pt-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ و با
-                                            استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و
-                                            مجله در ستون و سطرآنچنان که لازم
-                                            است و برای شرایط فعلی تکنولوژی
-                                            مورد نیاز و کاربردهای متنوع با
-                                            هدف بهبود
-                                        </p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
-
-                                            <p class="fs-7 mb-0">
-                                                خبرنگار : فهیم فولادی
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <?php if ($news->rowCount() == 0) : ?>
+                    <div class="alert alert-danger">
+                        خبر مورد نظر پیدا نشد !
                     </div>
+                <?php else : ?>
+                    <div class="row g-3">
+                        <?php foreach ($news as $news_1) : ?>
+                            <div class="col-sm-6">
+                                <div class="card">
+                                    <img src="./assets/images/<?= $news_1['image'] ?>" class="card-img-top" alt="news-image" />
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="card-title fw-bold">
+                                                <?= $news_1['title'] ?>
+                                            </h5>
+                                            <div>
+                                                <span class="badge text-bg-secondary"><?= $news_1['category_name'] ?></span>
+                                            </div>
+                                        </div>
+                                        <p class="card-text text-secondary pt-3">
+                                            <?= substr($news_1['description'], 0, 500) . "..." ?>
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+
+                                            <p class="fs-7 mb-0">
+                                                خبرنگار : <?= $news_1['reporter_name'] ?>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                <?php endif ?>
+            </div>
 
                     <?php
                     include "./include/layout/sidebar.php"
