@@ -5,7 +5,7 @@
         $keyword = $_GET['search'];
 
         $query = 
-        'SELECT news.title,news.image,news.description,news.status,category.name AS category_name, user.name AS reporter_name
+        'SELECT news.id,news.title,news.image,news.description,news.status,category.name AS category_name, user.name AS reporter_name
         FROM news 
         INNER JOIN category ON news.category_id = category.id
         INNER JOIN user ON news.reporter_id = user.id
@@ -50,7 +50,7 @@
                                             <?= substr($news_1['description'], 0, 500) . "..." ?>
                                         </p>
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <a href="single.html" class="btn btn-sm btn-dark">مشاهده</a>
+                                            <a href="single.php?news=<?= $pNews['id'] ?>" class="btn btn-sm btn-dark">مشاهده</a>
 
                                             <p class="fs-7 mb-0">
                                                 خبرنگار : <?= $news_1['reporter_name'] ?>

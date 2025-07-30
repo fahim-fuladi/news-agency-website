@@ -1,5 +1,20 @@
 <?php
-    include "./include/layout/header.php"
+    include "./include/layout/header.php";
+
+    if(isset($_GET['news'])) {
+        $news_id = $_GET['news'];
+
+        $query = 
+        'SELECT news.title,news.image,news.description,news.status,category.name AS category_name, user.name AS reporter_name
+        FROM news 
+        INNER JOIN category ON news.category_id = category.id
+        INNER JOIN user ON news.reporter_id = user.id
+        WHERE news.id = :id';
+
+        $news = $db->prepare($query);
+        $news->execute(['id' => "$news_id"]);
+        $news = $news->fetch();
+    }
 ?>
 
         <main>
@@ -7,72 +22,36 @@
             <section class="mt-4">
                 <div class="row">
                     <!-- Posts & Comments Content -->
+                    <?php if(empty($news)): ?>
+
+                    
+                    <div class="alert alert-danger">
+                        خبر مورد نظر پیدا نشد !
+                    </div>
+                    
+                    <?php else: ?>
+
                     <div class="col-lg-8">
                         <div class="row justify-content-center">
                             <!-- Post Section -->
                             <div class="col">
                                 <div class="card">
-                                    <img src="./assets/images/6.jpg" class="card-img-top" alt="post-image" />
+                                    <img src="./assets/images/<?= $news['image'] ?>" class="card-img-top" alt="post-image" />
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between">
                                             <h5 class="card-title fw-bold">
-                                                لورم ایپسوم
+                                            <?= $news['title'] ?>
                                             </h5>
                                             <div>
-                                                <span class="badge text-bg-secondary">سیاسی</span>
+                                                <span class="badge text-bg-secondary"><?= $news['category_name'] ?></span>
                                             </div>
                                         </div>
                                         <p class="card-text text-secondary text-justify pt-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ و با
-                                            استفاده از طراحان گرافیک است.
-                                            چاپگرها و متون بلکه روزنامه و
-                                            مجله در ستون و سطرآنچنان که لازم
-                                            است و برای شرایط فعلی تکنولوژی
-                                            مورد نیاز و کاربردهای متنوع با
-                                            هدف بهبود ابزارهای کاربردی می
-                                            باشد. کتابهای زیادی در شصت و سه
-                                            درصد گذشته، حال و آینده شناخت
-                                            فراوان جامعه و متخصصان را می
-                                            طلبد تا با نرم افزارها شناخت
-                                            بیشتری را برای طراحان رایانه ای
-                                            علی الخصوص طراحان خلاقی و فرهنگ
-                                            پیشرو در زبان فارسی ایجاد کرد.
-                                            در این صورت می توان امید داشت که
-                                            تمام و دشواری موجود در ارائه
-                                            راهکارها و شرایط سخت تایپ به
-                                            پایان رسد وزمان مورد نیاز شامل
-                                            حروفچینی دستاوردهای اصلی و
-                                            جوابگوی سوالات پیوسته اهل دنیای
-                                            موجود طراحی اساسا مورد استفاده
-                                            قرار گیرد.لورم ایپسوم متن ساختگی
-                                            با تولید سادگی نامفهوم از صنعت
-                                            چاپ و با استفاده از طراحان
-                                            گرافیک است. چاپگرها و متون بلکه
-                                            روزنامه و مجله در ستون و
-                                            سطرآنچنان که لازم است و برای
-                                            شرایط فعلی تکنولوژی مورد نیاز و
-                                            کاربردهای متنوع با هدف بهبود
-                                            ابزارهای کاربردی می باشد.
-                                            کتابهای زیادی در شصت و سه درصد
-                                            گذشته، حال و آینده شناخت فراوان
-                                            جامعه و متخصصان را می طلبد تا با
-                                            نرم افزارها شناخت بیشتری را برای
-                                            طراحان رایانه ای علی الخصوص
-                                            طراحان خلاقی و فرهنگ پیشرو در
-                                            زبان فارسی ایجاد کرد. در این
-                                            صورت می توان امید داشت که تمام و
-                                            دشواری موجود در ارائه راهکارها و
-                                            شرایط سخت تایپ به پایان رسد
-                                            وزمان مورد نیاز شامل حروفچینی
-                                            دستاوردهای اصلی و جوابگوی سوالات
-                                            پیوسته اهل دنیای موجود طراحی
-                                            اساسا مورد استفاده قرار گیرد.هدف
-                                            بهبود
+                                        <?= $news['description'] ?>
                                         </p>
                                         <div>
                                             <p class="fs-6 mt-5 mb-0">
-                                                خبرنگار: فهیم فولادی
+                                            <?= $news['reporter_name'] ?>
                                             </p>
                                         </div>
                                     </div>
@@ -168,6 +147,8 @@
                         </div>
                     </div>
 
+                    <?php endif ?>
+                    
                     <?php
                     include "./include/layout/sidebar.php"
                     ?>

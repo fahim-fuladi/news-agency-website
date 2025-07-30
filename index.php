@@ -52,13 +52,7 @@
                            
                             <?php if(isset($_GET['category'])): 
                                 $newsFiltered = getNewsFiltered($db);
-                                $newsData = $newsFiltered;
-                                $newsData = $newsData->fetchAll();
                                 ?>
-                                 <?php if(isset($_GET['category']) && empty($newsData)){
-                                   echo '<div class="alert alert-danger">خبر مورد نظر پیدا نشد !</div>';
-                                 }
-                                 ?>
                                 <?php foreach ($newsFiltered as $pNews): ?>
                                     <div class="col-sm-3 mb-3">
                                     <div class="card">
@@ -76,7 +70,7 @@
                                             <?= substr($pNews['description'],0,512) . "..." ?>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php?news=<?= $pNews['id'] ?>" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                 <?= $pNews['reporter_name'] ?>
@@ -118,7 +112,7 @@
                                             <?= substr($pNews['description'],0,512) . "..." ?>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php?news=<?= $pNews['id'] ?>" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                 <?= $pNews['reporter_name'] ?>
@@ -160,7 +154,7 @@
                                             <?= substr($pNews['description'],0,512) . "..." ?>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php?news=<?= $pNews['id'] ?>" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                 <?= $pNews['reporter_name'] ?>
@@ -202,7 +196,7 @@
                                             <?= substr($pNews['description'],0,512) . "..." ?>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center">
-                                                <a href="single.php" class="btn btn-sm btn-dark">مشاهده</a>
+                                                <a href="single.php?news=<?= $pNews['id'] ?>" class="btn btn-sm btn-dark">مشاهده</a>
 
                                                 <p class="fs-7 mb-0">
                                                 <?= $pNews['reporter_name'] ?>
