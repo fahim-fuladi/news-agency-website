@@ -1,5 +1,13 @@
 <?php
-include "./include/layout/header.php"
+include "./include/layout/header.php";
+
+
+$totalUsers = $db->query("SELECT COUNT(*) FROM user")->fetchColumn();
+$totalNews = $db->query("SELECT COUNT(*) FROM news")->fetchColumn();
+$totalCategories = $db->query("SELECT COUNT(*) FROM category")->fetchColumn();
+$totalComments = $db->query("SELECT COUNT(*) FROM comment")->fetchColumn();
+
+
 ?>
 
 <div class="container-fluid">
@@ -24,7 +32,7 @@ include "./include/layout/header.php"
                 👤
                 </div>
                 <h5 class="mt-2">تعداد کاربران</h5>
-                <p class="fs-4 fw-bold">0</p>
+                <p class="fs-4 fw-bold"><?= $totalUsers ?></p>
              </div>
         </div>
 
@@ -35,7 +43,7 @@ include "./include/layout/header.php"
             📰
             </div>
             <h5 class="mt-2">تعداد اخبار</h5>
-            <p class="fs-4 fw-bold">0</p>
+            <p class="fs-4 fw-bold"><?= $totalNews ?></p>
             </div>
         </div>
 
@@ -46,7 +54,7 @@ include "./include/layout/header.php"
                     🗂️
                 </div>
             <h5 class="mt-2">دسته‌بندی‌ها</h5>
-            <p class="fs-4 fw-bold">0</p>
+            <p class="fs-4 fw-bold"><?= $totalCategories ?></p>
             </div>
         </div>
 
@@ -57,7 +65,7 @@ include "./include/layout/header.php"
                  💬
                  </div>
                     <h5 class="mt-2">نظرات ثبت‌شده</h5>
-                     <p class="fs-4 fw-bold">0</p>
+                     <p class="fs-4 fw-bold"><?= $totalComments ?></p>
                   </div>
             </div>
         </div>
