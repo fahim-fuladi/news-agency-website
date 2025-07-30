@@ -24,14 +24,17 @@ $categories = $db->query("SELECT * FROM category");
 <body>
     <div class="container py-3">
         <header class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
-            <a href="index.html" class="fs-4 fw-medium link-body-emphasis text-decoration-none">
+            <a href="index.php" class="fs-4 fw-medium link-body-emphasis text-decoration-none">
                 خبرگزاری هیتنا
             </a>
 
             <nav class="d-inline-flex mt-2 mt-md-0 me-md-auto">
                 <?php if($categories->rowCount() > 0): ?>
                     <?php foreach($categories as $category): ?>
-                        <a class="fw-bold me-3 py-2 link-body-emphasis text-decoration-none" href="#"><?= $category['name'] ?></a>
+                        <a class="me-3 py-2 link-body-emphasis text-decoration-none 
+                        <?= (isset($_GET['category'])) && $category['id'] == $_GET['category'] ? 'fw-bold' : '' ?>" 
+                        href="index.php?category=<?= $category['id'] ?>">
+                        <?= $category['name'] ?></a>
                     <?php endforeach ?>
                 <?php endif ?>
             </nav>

@@ -168,44 +168,9 @@
                         </div>
                     </div>
 
-                    <!-- Sidebar Section -->
-                    <div class="col-lg-4">
-                        <!-- Sesrch Section -->
-                        <div class="card">
-                            <div class="card-body">
-                                <p class="fw-bold fs-6">جستجو در اخبار</p>
-                                <form action="search.php">
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="جستجو ..." />
-                                        <button class="btn btn-secondary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-
-                        <!-- Categories Section -->
-                        <div class="card mt-4">
-                            <div class="fw-bold fs-6 card-header">
-                                دسته بندی ها
-                            </div>
-                            <ul class="list-group list-group-flush p-0">
-                                <li class="list-group-item">
-                                    <a class="link-body-emphasis text-decoration-none" href="#">سیاسی</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a class="link-body-emphasis text-decoration-none" href="#">اقتصادی</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a class="link-body-emphasis text-decoration-none" href="#">علم و فناوری</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a class="link-body-emphasis text-decoration-none" href="#">متفرقه</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <?php
+                    include "./include/layout/sidebar.php"
+                    ?>
                 </div>
             </section>
         </main>
