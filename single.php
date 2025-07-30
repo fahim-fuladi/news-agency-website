@@ -51,6 +51,7 @@
                                         </p>
                                         <div>
                                             <p class="fs-6 mt-5 mb-0">
+                                            خبرنگار:
                                             <?= $news['reporter_name'] ?>
                                             </p>
                                         </div>
@@ -62,23 +63,46 @@
 
                             <!-- Comment Section -->
                             <div class="col">
+
+                            <?php 
+                            $invalidInputWriter = '';
+                            $invalidInputComment = '';
+                            $message = '';
+
+                            if(isset($_POST['postComment'])){
+                                if(empty(trim($_POST['writer']))) {
+                                    $invalidInputName = 'نام را وارد کنید';
+                                } elseif(empty(trim($_POST['text']))) {
+                                    $invalidInputComment = 'نظر خود را وارد کنید';
+                                } else {
+                                    $writer = $_POST['writer'];
+                                    $text = $_POST['text'];
+
+                                    $commentInsert = $db->prepare("INSERT INTO comment (writer, text, news_id) VALUES (:writer, :text, :news_id)");
+                                    $commentInsert->execute(['writer' => $writer, 'text' => $text, 'news_id' => $news_id]);
+
+                                    $message = 'نظر شما ثبت شد';
+                                }
+                            } ?>
                                 <!-- Comment Form -->
                                 <div class="card">
                                     <div class="card-body">
                                         <p class="fw-bold fs-5">
                                             ارسال کامنت
                                         </p>
-
-                                        <form>
+                                        <form method="POST">
+                                            <div class="text-success"><?= $message ?></div>
                                             <div class="mb-3">
                                                 <label class="form-label">نام</label>
-                                                <input type="text" class="form-control" />
+                                                <input type="text" name="writer" class="form-control" />
+                                                <div class="form-text text-danger"><?= $invalidInputWriter ?></div>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">متن کامنت</label>
-                                                <textarea class="form-control" rows="3"></textarea>
+                                                <textarea class="form-control" name="text" rows="3"></textarea>
+                                                <div class="form-text text-danger"><?= $invalidInputComment ?></div>
                                             </div>
-                                            <button type="submit" class="btn btn-dark">
+                                            <button type="submit" name="postComment" class="btn btn-dark">
                                                 ارسال
                                             </button>
                                         </form>
@@ -87,8 +111,15 @@
 
                                 <hr class="mt-4" />
                                 <!-- Comment Content -->
-                                <p class="fw-bold fs-6">تعداد کامنت : 3</p>
+                                <?php 
+                                $comments = $db->prepare("SELECT * FROM comment WHERE news_id = :id AND status = 'confirmed' ");
+                                $comments->execute(['id' => $news_id]);
+                                 ?>
+                                <p class="fw-bold fs-6">تعداد کامنت : <?= $comments->rowCount() ?> </p>
 
+                                <?php if($comments->rowCount() > 0): ?>
+
+                                <?php foreach($comments as $comment): ?>
                                 <div class="card bg-light-subtle mb-3">
                                     <div class="card-body">
                                         <div class="d-flex align-items-center">
@@ -96,53 +127,23 @@
                                                 alt="user-profle" />
 
                                             <h5 class="card-title me-2 mb-0">
-                                                محمد صالحی
+                                                <?= $comment['writer'] ?>
                                             </h5>
                                         </div>
 
                                         <p class="card-text pt-3 pr-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ و با
-                                            استفاده از طراحان گرافیک است.
+                                        <?= $comment['text'] ?>
                                         </p>
                                     </div>
                                 </div>
+                                <?php endforeach ?>
 
-                                <div class="card bg-light-subtle mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <img src="./assets/images/profile.png" width="45" height="45"
-                                                alt="user-profle" />
-
-                                            <h5 class="card-title me-2 mb-0">
-                                                متین سیدی
-                                            </h5>
-                                        </div>
-
-                                        <p class="card-text pt-3 pr-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی نامفهوم از صنعت چاپ
-                                        </p>
+                                <?php else: ?>
+                                    <div class="alert alert-danger" role="alert">
+                                        نظری برای این خبر ثبت نشده است.
                                     </div>
-                                </div>
+                                <?php endif ?>
 
-                                <div class="card bg-light-subtle mb-3">
-                                    <div class="card-body">
-                                        <div class="d-flex align-items-center">
-                                            <img src="./assets/images/profile.png" width="45" height="45"
-                                                alt="user-profle" />
-
-                                            <h5 class="card-title me-2 mb-0">
-                                                زهرا عزیزی
-                                            </h5>
-                                        </div>
-
-                                        <p class="card-text pt-3 pr-3">
-                                            لورم ایپسوم متن ساختگی با تولید
-                                            سادگی
-                                        </p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
