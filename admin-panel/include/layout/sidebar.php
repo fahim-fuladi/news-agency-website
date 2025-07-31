@@ -14,7 +14,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="./pages/posts/index.html">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/user/index.php">
                         <i class="bi bi-people-fill fs-4 text-secondary"></i>
                         <span class="fw-bold">کاربران</span>
                     </a>

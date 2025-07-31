@@ -141,10 +141,6 @@ if (isset($_GET['status']) && isset($_GET['id'])) {
   </div>
 </div>
 
-<?php
-include "../../include/layout/footer.php"
-?>
-
 <script>
   const newsModal = document.getElementById('newsModal');
   newsModal.addEventListener('show.bs.modal', function (event) {
@@ -170,3 +166,8 @@ include "../../include/layout/footer.php"
     return confirm("از حذف این خبر مطمئن هستید؟");
   }
 </script>
+
+<?php
+include "../../include/layout/footer.php"
+?>
+
