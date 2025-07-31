@@ -27,6 +27,8 @@ if (isset($_POST['login'])) {
             $user = $user->fetch(PDO::FETCH_ASSOC);
             $_SESSION['email'] = $email;
             $_SESSION['role'] = $user['role'];
+            $_SESSION['name'] = $user['name'];
+            $_SESSION['id'] = $user['id'];
 
             if($user['role'] == 'admin'){
                 header("Location:../admin-panel/index.php");

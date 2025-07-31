@@ -1,11 +1,25 @@
 <?php
 include "./include/layout/header.php";
 
+$userId = $_SESSION['id'];
 
-$totalUsers = $db->query("SELECT COUNT(*) FROM user")->fetchColumn();
-$totalNews = $db->query("SELECT COUNT(*) FROM news")->fetchColumn();
-$totalCategories = $db->query("SELECT COUNT(*) FROM category")->fetchColumn();
-$totalComments = $db->query("SELECT COUNT(*) FROM comment")->fetchColumn();
+
+$totalNews = $db->prepare("SELECT COUNT(*) FROM news WHERE reporter_id = :user_id");
+$totalNews->execute(['user_id' => $userId]);
+$totalNews = $totalNews->fetchColumn();
+
+$ConfirmedNews = $db->prepare("SELECT COUNT(*) FROM news WHERE reporter_id = :user_id AND status = 'confirmed'");
+$ConfirmedNews->execute(['user_id' => $userId]);
+$ConfirmedNews = $ConfirmedNews->fetchColumn();
+
+$totalComments = $db->prepare(
+    "SELECT COUNT(*) 
+    FROM comment 
+    INNER JOIN news ON comment.news_id = news.id 
+    WHERE news.reporter_id = :user_id AND comment.status = 'confirmed'
+");
+$totalComments->execute(['user_id' => $userId]);
+$totalComments = $totalComments->fetchColumn();
 
 
 ?>
@@ -25,16 +39,6 @@ $totalComments = $db->query("SELECT COUNT(*) FROM comment")->fetchColumn();
                 <h1 class="fs-3 fw-bold">داشبورد</h1>
             </div>
             <div class="row g-4 mt-4">
-        <!-- Total Users -->
-        <div class="col-md-3">
-            <div class="card text-center shadow-sm border-0 p-3">
-                <div class="text-primary fs-1">
-                👤
-                </div>
-                <h5 class="mt-2">تعداد کاربران</h5>
-                <p class="fs-4 fw-bold"><?= $totalUsers ?></p>
-             </div>
-        </div>
 
         <!-- Total News -->
         <div class="col-md-3">
@@ -42,19 +46,19 @@ $totalComments = $db->query("SELECT COUNT(*) FROM comment")->fetchColumn();
             <div class="text-success fs-1">
             📰
             </div>
-            <h5 class="mt-2">تعداد اخبار</h5>
+            <h5 class="mt-2">همه اخبار من</h5>
             <p class="fs-4 fw-bold"><?= $totalNews ?></p>
             </div>
         </div>
 
-        <!-- Categories -->
+        <!-- Total Confirmed News -->
         <div class="col-md-3">
             <div class="card text-center shadow-sm border-0 p-3">
-                <div class="text-warning fs-1">
-                    🗂️
-                </div>
-            <h5 class="mt-2">دسته‌بندی‌ها</h5>
-            <p class="fs-4 fw-bold"><?= $totalCategories ?></p>
+            <div class="text-success fs-1">
+            📰
+            </div>
+            <h5 class="mt-2">اخبار تایید شده من</h5>
+            <p class="fs-4 fw-bold"><?= $ConfirmedNews ?></p>
             </div>
         </div>
 

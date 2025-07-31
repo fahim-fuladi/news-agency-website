@@ -14,13 +14,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, '/news-agency-website/reporter-panel/pages/user') ? '' : 'text-secondary' ?>" href="/news-agency-website/reporter-panel/pages/user/index.php">
-                        <i class="bi bi-people-fill fs-4 text-secondary"></i>
-                        <span class="fw-bold">کاربران</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, '/news-agency-website/reporter-panel/pages/news') ? '' : 'text-secondary' ?>" href="/news-agency-website/reporter-panel/pages/news/index.php">
                         <i class="bi bi-file-earmark-image-fill fs-4 text-secondary"></i>
                         <span class="fw-bold">اخبار</span>
