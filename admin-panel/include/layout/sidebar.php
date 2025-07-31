@@ -7,28 +7,28 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
             <ul class="nav flex-column pe-3">
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 text-secondary" href="/news-agency-website/admin-panel/index.php">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, '/news-agency-website/admin-panel/index.php') ? '' : 'text-secondary' ?>" href="/news-agency-website/admin-panel/index.php">
                         <i class="bi bi-house-fill fs-4 text-secondary"></i>
                         <span class="fw-bold">داشبورد</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/user/index.php">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, '/news-agency-website/admin-panel/pages/user') ? '' : 'text-secondary' ?>" href="/news-agency-website/admin-panel/pages/user/index.php">
                         <i class="bi bi-people-fill fs-4 text-secondary"></i>
                         <span class="fw-bold">کاربران</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/news/index.php">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, '/news-agency-website/admin-panel/pages/news') ? '' : 'text-secondary' ?>" href="/news-agency-website/admin-panel/pages/news/index.php">
                         <i class="bi bi-file-earmark-image-fill fs-4 text-secondary"></i>
                         <span class="fw-bold">اخبار</span>
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/category/index.php">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, 'category') ? '' : 'text-secondary' ?>" href="/news-agency-website/admin-panel/pages/category/index.php">
                         <i class="bi bi-folder-fill fs-4 text-secondary"></i>
 
                         <span class="fw-bold">دسته بندی</span>
@@ -36,7 +36,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/comment/index.php">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, 'comment') ? '' : 'text-secondary' ?>" href="/news-agency-website/admin-panel/pages/comment/index.php">
                         <i class="bi bi-chat-left-text-fill fs-4 text-secondary"></i>
 
                         <span class="fw-bold">نظرات</span>
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="#">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/auth/logout.php">
                         <i class="bi bi-box-arrow-right fs-4 text-secondary"></i>
 
                         <span class="fw-bold">خروج</span>

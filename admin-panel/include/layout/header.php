@@ -1,5 +1,19 @@
 <?php
+
+session_start();
+
 include __DIR__ . "/../db.php";
+
+$path = $_SERVER['REQUEST_URI'];
+
+if(!isset($_SESSION['email'])) {
+    if(str_contains($path, 'pages')) {
+        header("Location:../auth/login.php?err_msg=ابتدا وارد سیستم شوید");
+    }else {
+        header("Location:./pages/auth/login.php?err_msg=ابتدا وارد سیستم شوید");
+    }
+    exit();
+};
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +27,11 @@ include __DIR__ . "/../db.php";
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="../../../admin-panel/assets/css/style.css" />
+    <?php if (str_contains($path, 'pages')) : ?>
+        <link rel="stylesheet" href="../../assets/css/style.css" />
+    <?php else : ?>
+        <link rel="stylesheet" href="./assets/css/style.css" />
+    <?php endif ?>
 </head>
 
 <body>
