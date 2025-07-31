@@ -21,14 +21,6 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, 'category') ? '' : 'text-secondary' ?>" href="/news-agency-website/reporter-panel/pages/category/index.php">
-                        <i class="bi bi-folder-fill fs-4 text-secondary"></i>
-
-                        <span class="fw-bold">دسته بندی</span>
-                    </a>
-                </li>
-
-                <li class="nav-item">
                     <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2 <?= str_contains($path, 'comment') ? '' : 'text-secondary' ?>" href="/news-agency-website/reporter-panel/pages/comment/index.php">
                         <i class="bi bi-chat-left-text-fill fs-4 text-secondary"></i>
 
