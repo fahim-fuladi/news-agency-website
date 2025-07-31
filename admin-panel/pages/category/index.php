@@ -52,8 +52,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <th><?= $category['id'] ?></th>
                                         <td><?= $category['name'] ?></td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-outline-dark">ویرایش</a>
-                                            <a href="" class="btn btn-sm btn-outline-danger" onclick="return Delete()">حذف</a>
+                                            <a href="./edit.php?id=<?= $category['id'] ?>" class="btn btn-sm btn-outline-dark">ویرایش</a>
+                                            <a href="index.php?action=delete&id=<?= $category['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return Delete()">حذف</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
