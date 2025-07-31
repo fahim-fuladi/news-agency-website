@@ -3,7 +3,7 @@ include "../../include/layout/header.php";
 
 $news = $db->query("SELECT news.id,news.title,news.image,news.description,news.status, user.name AS reporter_name FROM news INNER JOIN user ON news.reporter_id = user.id ORDER BY id DESC");
 
-if (isset($_GET['action']) && isset($_GET['id'])) {
+if (isset($_GET['action']) && $_GET['action'] == 'delete' && isset($_GET['id'])) {
     $id = $_GET['id'];
     $query = $db->prepare('DELETE FROM news WHERE id = :id');
 
@@ -11,6 +11,27 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 
     header("Location:index.php");
     exit();
+}
+
+if (isset($_GET['status']) && isset($_GET['id'])) {
+    if($_GET['status'] == 'confirm') {
+        $id = $_GET['id'];
+    $query = $db->prepare("UPDATE news SET status = 'confirmed' WHERE id = :id");
+
+    $query->execute(['id' => $id]);
+
+    header("Location:index.php");
+    exit();
+    };
+    if($_GET['status'] == 'reject') {
+        $id = $_GET['id'];
+    $query = $db->prepare("UPDATE news SET status = 'rejected' WHERE id = :id");
+
+    $query->execute(['id' => $id]);
+
+    header("Location:index.php");
+    exit();
+    }
 }
 
 ?>
@@ -54,7 +75,8 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <?php if ($news_1['status'] == 'confirmed') : ?>
                                                 <button class="btn btn-sm btn-outline-dark disabled">تایید شده</button>
                                             <?php elseif($news_1['status'] == 'pending') : ?>
-                                                <a href="index.php?action=approve&id=<?= $news_1['id'] ?>" class="btn btn-sm btn-outline-info">در انتظار تایید</a>
+                                                <a href="index.php?status=confirm&id=<?= $news_1['id'] ?>" class="btn btn-sm btn-outline-info">تایید</a>
+                                                <a href="index.php?status=reject&id=<?= $news_1['id'] ?>" class="btn btn-sm btn-outline-info">رد کردن</a>
                                             <?php else : ?>
                                                 <button class="btn btn-sm btn-outline-warning disabled">رد شده</button>
                                             <?php endif ?>
