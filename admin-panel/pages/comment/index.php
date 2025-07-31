@@ -55,7 +55,7 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <td><?= $comment['writer'] ?></td>
                                         <td><?= $comment['text'] ?></td>
                                         <td>
-                                            <?php if ($comment['status']) : ?>
+                                            <?php if ($comment['status'] == 'confirmed') : ?>
                                                 <button class="btn btn-sm btn-outline-dark disabled">تایید شده</button>
                                             <?php else : ?>
                                                 <a href="index.php?action=approve&id=<?= $comment['id'] ?>" class="btn btn-sm btn-outline-info">در انتظار تایید</a>

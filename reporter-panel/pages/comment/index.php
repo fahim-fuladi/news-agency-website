@@ -1,7 +1,10 @@
 <?php
 include "../../include/layout/header.php";
 
-$comments = $db->query("SELECT * FROM comment ORDER BY id DESC");
+$user_id = $_SESSION['id'];
+
+$comments = $db->prepare("SELECT * FROM comment INNER JOIN news ON comment.news_id = news.id  WHERE news.reporter_id = :id ORDER BY comment.id DESC");
+$comments->execute(['id' => $user_id]);
 
 if (isset($_GET['action']) && isset($_GET['id'])) {
 
@@ -55,10 +58,10 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
                                         <td><?= $comment['writer'] ?></td>
                                         <td><?= $comment['text'] ?></td>
                                         <td>
-                                            <?php if ($comment['status']) : ?>
-                                                <button class="btn btn-sm btn-outline-dark disabled">تایید شده</button>
+                                            <?php if ($comment['status'] == 'confirmed') : ?>
+                                                <button class="btn btn-sm btn-outline-success disabled">تایید شده</button>
                                             <?php else : ?>
-                                                <a href="index.php?action=approve&id=<?= $comment['id'] ?>" class="btn btn-sm btn-outline-info">در انتظار تایید</a>
+                                                <button class="btn btn-sm btn-outline-dark disabled">در انتظار تایید</button>
                                             <?php endif ?>
 
 
