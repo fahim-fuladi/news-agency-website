@@ -28,7 +28,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="./pages/categories/index.html">
+                    <a class="nav-link link-body-emphasis text-decoration-none d-flex align-items-center gap-2" href="/news-agency-website/admin-panel/pages/category/index.php">
                         <i class="bi bi-folder-fill fs-4 text-secondary"></i>
 
                         <span class="fw-bold">دسته بندی</span>
