@@ -83,7 +83,7 @@ if (isset($_GET['role']) && isset($_GET['id'])) {
                                             <?php else : ?>
                                                 <div></div>
                                             <?php endif ?>
-                                            <a href="index.php?action=delete&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirmDelete()">حذف</a>
+                                            <a href="index.php?action=delete&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return Delete()">حذف</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
@@ -103,8 +103,8 @@ if (isset($_GET['role']) && isset($_GET['id'])) {
 </div>
 
 <script>
-  function confirmDelete() {
-    return confirm("از حذف این خبر مطمئن هستید؟");
+  function Delete() {
+    return confirm("از حذف این کاربر مطمئن هستید؟");
   }
 </script>
 

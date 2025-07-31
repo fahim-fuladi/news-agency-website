@@ -95,7 +95,7 @@ if (isset($_GET['status']) && isset($_GET['id'])) {
                                             <?php else : ?>
                                                 <button class="btn btn-sm btn-outline-warning disabled">رد شده</button>
                                             <?php endif ?>
-                                            <a href="index.php?action=delete&id=<?= $news_1['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return confirmDelete()">حذف</a>
+                                            <a href="index.php?action=delete&id=<?= $news_1['id'] ?>" class="btn btn-sm btn-outline-danger" onclick="return Delete()">حذف</a>
                                         </td>
                                     </tr>
                                 <?php endforeach ?>
@@ -162,7 +162,7 @@ if (isset($_GET['status']) && isset($_GET['id'])) {
 
 
 <script>
-  function confirmDelete() {
+  function Delete() {
     return confirm("از حذف این خبر مطمئن هستید؟");
   }
 </script>
