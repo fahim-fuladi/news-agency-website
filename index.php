@@ -32,7 +32,6 @@
         $news = $db->prepare($query);
         $news->bindValue(':id', $categoryId, PDO::PARAM_INT);
         $news->execute();
-        //print_r($news->fetchAll());
         return $news;
     }
     
@@ -89,7 +88,7 @@
                                         style="width: 12px; height: 12px;"></span>
                                     سیاسی
                                 </h3>
-                                <a href="#" class="btn btn-sm btn-outline-secondary">بیشتر</a>
+                                <a href="index.php?category=1" class="btn btn-sm btn-outline-secondary">بیشتر</a>
                             </div>
                             <div class="row g-2">
                                 <?php 
@@ -130,7 +129,7 @@
                                         style="width: 12px; height: 12px;"></span>
                                     اقتصادی
                                 </h3>
-                                <a href="#" class="btn btn-sm btn-outline-secondary">بیشتر</a>
+                                <a href="index.php?category=2" class="btn btn-sm btn-outline-secondary">بیشتر</a>
                             </div>
                             <div class="row g-2">
                                 <?php 
@@ -172,7 +171,7 @@
                                         style="width: 12px; height: 12px;"></span>
                                     علمی و فناوری
                                 </h3>
-                                <a href="#" class="btn btn-sm btn-outline-secondary">بیشتر</a>
+                                <a href="index.php?category=3" class="btn btn-sm btn-outline-secondary">بیشتر</a>
                             </div>
                             <div class="row g-2">
                                 <?php 

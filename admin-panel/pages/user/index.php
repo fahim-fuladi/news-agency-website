@@ -38,6 +38,27 @@ if (isset($_GET['role']) && isset($_GET['id'])) {
 }
 ?>
 
+<?php
+if (isset($_GET['action']) && $_GET['action'] == 'login' && isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $user = $db->prepare("SELECT * FROM user WHERE id = :id");
+    $user->execute(['id' => $id]);
+    $user = $user->fetch(PDO::FETCH_ASSOC);
+
+    $_SESSION['email'] = $user['email'];
+    $_SESSION['role'] = $user['role'];
+    $_SESSION['name'] = $user['name'];
+    $_SESSION['id'] = $user['id'];
+
+    if($user['role'] == 'admin'){
+        header("Location:../../../admin-panel/index.php");
+    } else {
+        header("Location:../../../reporter-panel/index.php");
+    }
+    exit();
+}
+?>
+
 <div class="container-fluid">
     <div class="row">
         <!-- Sidebar Section -->
@@ -76,6 +97,7 @@ if (isset($_GET['role']) && isset($_GET['id'])) {
                                         <td><?= $user['email'] ?></td>
                                         <td><?= ($user['role'] == 'admin')? 'مدیر' : 'خبرنگار'  ?></td>
                                         <td>
+                                        <a href="index.php?action=login&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-primary">ورود به پنل کاربر</a>
                                         <?php if ($user['role'] == 'admin') : ?>
                                             <a href="index.php?role=reporter&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-info">تغییر وضعیت به خبرنگار</a>
                                             <?php elseif($user['role'] == 'reporter') : ?>
