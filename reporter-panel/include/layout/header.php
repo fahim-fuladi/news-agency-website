@@ -7,12 +7,6 @@ include __DIR__ . "/../db.php";
 
 $path = $_SERVER['REQUEST_URI'];
 
-
-if(!($_SESSION['role'] == 'admin')) {
-    header("Location:/news-agency-website/auth/login.php?err_msg=حساب شما به پنل ادمین دسترسی ندارد!");
-    exit();
-}
-
 if(!isset($_SESSION['email'])) {
     if(str_contains($path, 'pages')) {
         header("Location:/news-agency-website/auth/login.php?err_msg=ابتدا وارد سیستم شوید");
@@ -41,7 +35,7 @@ if(!isset($_SESSION['email'])) {
 
 <body>
     <header class="navbar sticky-top bg-secondary flex-md-nowrap p-0 shadow-sm">
-        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-5 text-white" href="index.html">پنل ادمین</a>
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-5 text-white" href="index.html">پنل خبرنگار</a>
 
         <button class="ms-2 nav-link px-3 text-white d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
             <i class="bi bi-justify-left fs-2"></i>

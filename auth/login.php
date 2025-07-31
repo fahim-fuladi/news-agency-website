@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "../../include/db.php";
+include "../include/db.php";
 
 $invalidInputEmail = '';
 $invalidInputPassword = '';
@@ -23,9 +23,19 @@ if (isset($_POST['login'])) {
         $user->execute(['email' => $email, 'password' => $password]);
 
         if ($user->rowCount() == 1) {
+
+            $user = $user->fetch(PDO::FETCH_ASSOC);
             $_SESSION['email'] = $email;
-            header("Location:../../index.php");
-            exit();
+            $_SESSION['role'] = $user['role'];
+
+            if($user['role'] == 'admin'){
+                header("Location:../admin-panel/index.php");
+                exit();
+            }
+            if($user['role'] == 'reporter'){
+                header("Location:../reporter-panel/index.php");
+                exit();
+            }
         }
 
         header("Location:login.php?err_msg=کاربری با این اطلاعات یافت نشد");
@@ -45,7 +55,7 @@ if (isset($_POST['login'])) {
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 
-    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <link rel="stylesheet" href="../admin-panel/assets/css/style.css" />
 </head>
 
 <body class="auth">
